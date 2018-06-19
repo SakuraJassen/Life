@@ -41,13 +41,13 @@ if(defined($myStartField)){
         foreach my $y (0..min($myStartField->height, $height)) {
             if($myStartField->getPixel($x,$y) != 0){
                 $field[$width * $x + $y] = 1;
-                #$field->[$x]->[$y] = 1,
             }
         }
     }
 }
+
 my $gen = 0;
-my $maxgen = 100;
+my $maxgen = 0;
 
 my $frame = new GD::Image($width, $height);
 
@@ -148,7 +148,7 @@ sub setVal {
     $field[$params{width} * $params{x} + $params{y}] = $params{value};
 }
 
-sub indexToXY{
+sub indexToXY {
     my %params  = (
         index => undef,
         width => $width,
