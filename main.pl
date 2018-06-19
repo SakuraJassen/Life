@@ -46,7 +46,8 @@ if(defined($myStartField)){
         }
     }
 }
-
+my $gen = 0;
+my $maxgen = 10;
 my $frame = new GD::Image($width, $height);
 
 my $mw = new MainWindow;
@@ -70,10 +71,10 @@ sub redraw {
     $photo_obj->blank;
     $photo_obj->configure(-data => drawFrame());
     $mw->update;
-    $mw->after(100 => \&redraw);
-
+    $mw->after(100 => \&redraw) if ($maxgen > 0 and $gen <= $maxgen);
 
     print($time-$time1, "\n");
+    $gen++;
 }
 
 $mw->MainLoop();
